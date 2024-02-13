@@ -2,11 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import { action } from "../server/action";
-import { callWithSpan } from "@/otel/web/callWithSpan";
+import { callWithSpan } from "@/otel/web/trace/callWithSpan";
 import { shutdownMeterProvider } from "@/otel/both/shutdownMeterProvider";
-import { getWebMeter } from "@/otel/web/meter";
-import { recordWebVitalMetrics } from "@/otel/web/webVitalMetrics";
-import { recordWindowMetrics } from "@/otel/web/windowMetrics";
+import { getMeter } from "@/otel/both/getMeter";
+import { recordWebVitalMetrics } from "@/otel/web/metrics/webVitalMetrics";
+import { recordWindowMetrics } from "@/otel/web/metrics/windowMetrics";
 
 const f = async () => {
   console.log("client fetch");
@@ -25,7 +25,7 @@ const Test: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const webMeter = getWebMeter();
+    const webMeter = getMeter();
     recordWebVitalMetrics(webMeter);
     recordWindowMetrics(webMeter);
     return () => {

@@ -15,9 +15,8 @@ import {
 // Optional and only needed to see the internal diagnostic logging (during development)
 diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.DEBUG);
 
-// コールバックにしないとなぜかサーバー側で生成される
-// サーバー側でも動作するのでServer Actionsでも良い
-export const getWebMeter = () => {
+// サーバー側でも動作する（urlを変える？）
+export const getMeter = () => {
   const meterProvider = new MeterProvider();
   metrics.setGlobalMeterProvider(meterProvider);
 
