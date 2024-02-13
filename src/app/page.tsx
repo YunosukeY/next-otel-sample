@@ -1,4 +1,5 @@
-import Test from "@/Test";
+import Test from "@/client/Test";
+import { action } from "@/server/action";
 import Image from "next/image";
 
 const f = async () => {
@@ -11,13 +12,6 @@ const f = async () => {
 const Home = async () => {
   const data = await f();
 
-  const action = async () => {
-    "use server";
-    console.log("server action in server component");
-    const res = await fetch("https://example.com/", { cache: "no-cache" });
-    const data = await res.text();
-    return data;
-  };
   setTimeout(() => {
     action();
   }, 1000);

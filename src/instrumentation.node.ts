@@ -1,13 +1,3 @@
-import { NodeSDK } from "@opentelemetry/sdk-node";
-import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
-import { Resource } from "@opentelemetry/resources";
-import { SemanticResourceAttributes } from "@opentelemetry/semantic-conventions";
-import { SimpleSpanProcessor } from "@opentelemetry/sdk-trace-node";
+import { nodeSdk } from "./otel/node/sdk";
 
-const sdk = new NodeSDK({
-  resource: new Resource({
-    [SemanticResourceAttributes.SERVICE_NAME]: "next-app-manual-configuration",
-  }),
-  spanProcessor: new SimpleSpanProcessor(new OTLPTraceExporter()),
-});
-sdk.start();
+nodeSdk.start();

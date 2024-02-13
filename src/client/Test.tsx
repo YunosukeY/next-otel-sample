@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { action } from "./action";
+import { action } from "../server/action";
 
 const f = async () => {
   console.log("client fetch");
