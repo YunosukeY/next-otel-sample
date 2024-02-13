@@ -1,6 +1,6 @@
 import Test from "@/client/Test";
-import { getMeterFor } from "@/otel/both/getMeterFor";
-import { logger } from "@/otel/both/logger";
+import { getMeterFor } from "@/otel/both/metrics/getMeterFor";
+import { logger } from "@/otel/both/logs/logger";
 import { recordOsMetrics } from "@/otel/node/osMetrics";
 import { action } from "@/server/action";
 import Image from "next/image";

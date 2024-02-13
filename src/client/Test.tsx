@@ -3,11 +3,11 @@
 import React, { useEffect, useState } from "react";
 import { action } from "../server/action";
 import { callWithSpan } from "@/otel/web/trace/callWithSpan";
-import { shutdownMeterProvider } from "@/otel/both/shutdownMeterProvider";
-import { getMeterFor } from "@/otel/both/getMeterFor";
+import { shutdownMeterProvider } from "@/otel/both/metrics/shutdownMeterProvider";
+import { getMeterFor } from "@/otel/both/metrics/getMeterFor";
 import { recordWebVitalMetrics } from "@/otel/web/metrics/webVitalMetrics";
 import { recordWindowMetrics } from "@/otel/web/metrics/windowMetrics";
-import { logger } from "@/otel/both/logger";
+import { logger } from "@/otel/both/logs/logger";
 
 const f = async () => {
   console.log("client fetch");
