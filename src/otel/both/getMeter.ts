@@ -13,7 +13,7 @@ import {
 } from "@opentelemetry/sdk-metrics";
 
 // Optional and only needed to see the internal diagnostic logging (during development)
-diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.DEBUG);
+// diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.DEBUG);
 
 // サーバー側でも動作する（urlを変える？）
 export const getMeter = () => {

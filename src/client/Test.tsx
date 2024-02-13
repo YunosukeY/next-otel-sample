@@ -7,6 +7,7 @@ import { shutdownMeterProvider } from "@/otel/both/shutdownMeterProvider";
 import { getMeter } from "@/otel/both/getMeter";
 import { recordWebVitalMetrics } from "@/otel/web/metrics/webVitalMetrics";
 import { recordWindowMetrics } from "@/otel/web/metrics/windowMetrics";
+import { logger } from "@/otel/both/logger";
 
 const f = async () => {
   console.log("client fetch");
@@ -19,6 +20,7 @@ const f = async () => {
 };
 
 const Test: React.FC = () => {
+  logger.info("client component");
   const [data, setData] = useState<string>();
   useEffect(() => {
     callWithSpan(f).then((data) => setData(data));

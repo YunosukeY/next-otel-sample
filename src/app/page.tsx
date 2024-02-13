@@ -1,4 +1,5 @@
 import Test from "@/client/Test";
+import { logger } from "@/otel/both/logger";
 import { action } from "@/server/action";
 import Image from "next/image";
 
@@ -10,6 +11,8 @@ const f = async () => {
 };
 
 const Home = async () => {
+  logger.info("server component");
+
   const data = await f();
 
   setTimeout(() => {
