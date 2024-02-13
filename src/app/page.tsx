@@ -1,5 +1,7 @@
 import Test from "@/client/Test";
+import { getMeterFor } from "@/otel/both/getMeterFor";
 import { logger } from "@/otel/both/logger";
+import { recordOsMetrics } from "@/otel/node/osMetrics";
 import { action } from "@/server/action";
 import Image from "next/image";
 
@@ -18,6 +20,9 @@ const Home = async () => {
   setTimeout(() => {
     action();
   }, 1000);
+
+  const nodeMeter = getMeterFor("node");
+  recordOsMetrics(nodeMeter);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

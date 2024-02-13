@@ -1,5 +1,3 @@
-"use client";
-
 import {
   DiagConsoleLogger,
   DiagLogLevel,
@@ -16,13 +14,16 @@ import {
 // diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.DEBUG);
 
 // サーバー側でも動作する（urlを変える？）
-export const getMeter = () => {
+export const getMeterFor = (which: "web" | "node") => {
   const meterProvider = new MeterProvider();
   metrics.setGlobalMeterProvider(meterProvider);
 
   meterProvider.addMetricReader(
     new PeriodicExportingMetricReader({
-      exporter: new OTLPMetricExporter({ url: "/api/metrics" }),
+      exporter: new OTLPMetricExporter({
+        url:
+          which === "web" ? "/api/metrics" : "http://localhost:4318/v1/metrics",
+      }),
       exportIntervalMillis: 1000,
     })
   );
