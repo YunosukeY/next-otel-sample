@@ -9,12 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@opentelemetry/api": "^1.7.0",
+    "@opentelemetry/context-zone": "^1.21.0",
     "@opentelemetry/exporter-trace-otlp-http": "^0.48.0",
+    "@opentelemetry/instrumentation": "^0.48.0",
+    "@opentelemetry/instrumentation-fetch": "^0.48.0",
+    "@opentelemetry/propagator-b3": "^1.21.0",
     "@opentelemetry/resources": "^1.21.0",
     "@opentelemetry/sdk-node": "^0.48.0",
     "@opentelemetry/sdk-trace-node": "^1.21.0",
+    "@opentelemetry/sdk-trace-web": "^1.21.0",
     "@opentelemetry/semantic-conventions": "^1.21.0",
-    "@vercel/otel": "^1.2.1",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18"

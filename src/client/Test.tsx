@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { action } from "../server/action";
+import { callWithSpan } from "@/otel/web/callWithSpan";
 
 const f = async () => {
   console.log("client fetch");
@@ -16,7 +17,7 @@ const f = async () => {
 const Test: React.FC = () => {
   const [data, setData] = useState<string>();
   useEffect(() => {
-    f().then((data) => setData(data));
+    callWithSpan(f).then((data) => setData(data));
   }, []);
 
   return (

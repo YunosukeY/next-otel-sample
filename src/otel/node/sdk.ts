@@ -6,7 +6,7 @@ import { SimpleSpanProcessor } from "@opentelemetry/sdk-trace-node";
 
 export const nodeSdk = new NodeSDK({
   resource: new Resource({
-    [SemanticResourceAttributes.SERVICE_NAME]: "next-app-manual-configuration",
+    [SemanticResourceAttributes.SERVICE_NAME]: "server",
   }),
   spanProcessor: new SimpleSpanProcessor(new OTLPTraceExporter()),
 });
