@@ -2,7 +2,6 @@ import { ZoneContextManager } from "@opentelemetry/context-zone";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { registerInstrumentations } from "@opentelemetry/instrumentation";
 import { FetchInstrumentation } from "@opentelemetry/instrumentation-fetch";
-import { B3Propagator } from "@opentelemetry/propagator-b3";
 import { Resource, detectResourcesSync } from "@opentelemetry/resources";
 import {
   ConsoleSpanExporter,
@@ -11,6 +10,7 @@ import {
 } from "@opentelemetry/sdk-trace-web";
 import { SemanticResourceAttributes } from "@opentelemetry/semantic-conventions";
 import { browserDetector } from "@opentelemetry/opentelemetry-browser-detector";
+import { W3CTraceContextPropagator } from "@opentelemetry/core";
 
 let resource = new Resource({
   [SemanticResourceAttributes.SERVICE_NAME]: "client",
@@ -30,7 +30,7 @@ provider.addSpanProcessor(
 );
 provider.register({
   contextManager: new ZoneContextManager(),
-  propagator: new B3Propagator(),
+  propagator: new W3CTraceContextPropagator(),
 });
 
 registerInstrumentations({
