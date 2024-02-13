@@ -3,6 +3,15 @@
 import React, { useEffect, useState } from "react";
 import { action } from "../server/action";
 import { callWithSpan } from "@/otel/web/callWithSpan";
+import { shutdownMeterProvider } from "@/otel/both/shutdownMeterProvider";
+import { metrics } from "@opentelemetry/api";
+import { OTLPMetricExporter } from "@opentelemetry/exporter-metrics-otlp-http";
+import {
+  MeterProvider,
+  PeriodicExportingMetricReader,
+} from "@opentelemetry/sdk-metrics";
+import { getWebMeter } from "@/otel/web/meter";
+import { recordHeight, recordWidth } from "@/otel/web/windowMetrics";
 
 const f = async () => {
   console.log("client fetch");
@@ -18,6 +27,15 @@ const Test: React.FC = () => {
   const [data, setData] = useState<string>();
   useEffect(() => {
     callWithSpan(f).then((data) => setData(data));
+  }, []);
+
+  useEffect(() => {
+    const webMeter = getWebMeter();
+    recordWidth(webMeter);
+    recordHeight(webMeter);
+    return () => {
+      shutdownMeterProvider();
+    };
   }, []);
 
   return (

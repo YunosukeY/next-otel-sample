@@ -9,6 +9,10 @@ const nextConfig = {
         source: "/api/trace",
         destination: "http://localhost:4318/v1/traces",
       },
+      {
+        source: "/api/metrics",
+        destination: "http://localhost:4318/v1/metrics",
+      },
     ];
   },
 };
