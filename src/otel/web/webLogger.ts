@@ -1,5 +1,3 @@
-"use client";
-
 import { logs } from "@opentelemetry/api-logs";
 import {
   LoggerProvider,
