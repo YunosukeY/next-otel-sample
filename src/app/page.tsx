@@ -1,5 +1,5 @@
 import Test from "@/client/Test";
-import { logger } from "@/otel/both/logs/logger";
+import { nodeLogger } from "@/otel/node/nodeLogger";
 import { observeMetrics } from "@/otel/node/osMetrics";
 import { action } from "@/server/action";
 
@@ -10,7 +10,7 @@ const f = async () => {
 };
 
 const Home = async () => {
-  logger.info("server component");
+  nodeLogger.info("server component");
 
   const data = await f();
 
