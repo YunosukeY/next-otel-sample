@@ -5,7 +5,7 @@ import { action } from "../server/action";
 import { callWithSpan } from "@/otel/web/trace/callWithSpan";
 import { recordWebVitalMetrics } from "@/otel/web/metrics/webVitalMetrics";
 import { recordWindowMetrics } from "@/otel/web/metrics/windowMetrics";
-import { webLogger } from "@/otel/web/webLogger";
+import { webLogger } from "@/otel/web/logs/webLogger";
 
 const f = async () => {
   const res = await fetch("https://example.com/", {

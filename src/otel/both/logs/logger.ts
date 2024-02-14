@@ -3,19 +3,6 @@ import {
   SeverityNumber,
   logs,
 } from "@opentelemetry/api-logs";
-import {
-  LoggerProvider,
-  SimpleLogRecordProcessor,
-  ConsoleLogRecordExporter,
-} from "@opentelemetry/sdk-logs";
-
-export const configureLoggerProvider = () => {
-  const loggerProvider = new LoggerProvider();
-  loggerProvider.addLogRecordProcessor(
-    new SimpleLogRecordProcessor(new ConsoleLogRecordExporter()) // まだInMemoryとConsoleLogしかない
-  );
-  logs.setGlobalLoggerProvider(loggerProvider);
-};
 
 export class Logger {
   private _logger: OTelLogger;
