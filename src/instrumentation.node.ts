@@ -1,4 +1,4 @@
-import { nodeSdk } from "./otel/node/sdk";
+import { nodeSdk } from "./otel/node/nodeSdk";
 
 nodeSdk.start();
 

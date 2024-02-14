@@ -31,7 +31,7 @@ const observeMemory = () => {
   });
 };
 
-export const observeMetrics = () => {
+export const observeOsMetrics = () => {
   observeCpu();
   observeMemory();
 };

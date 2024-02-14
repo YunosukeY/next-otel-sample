@@ -6,8 +6,8 @@ import {
   SimpleLogRecordProcessor,
   ConsoleLogRecordExporter,
 } from "@opentelemetry/sdk-logs";
-import { Logger } from "../../both/logs/logger";
-import { webResource } from "../resources/webResource";
+import { Logger } from "@/otel/both/logs/Logger";
+import { webResource } from "./webResource";
 
 const loggerProvider = new LoggerProvider({ resource: webResource });
 loggerProvider.addLogRecordProcessor(

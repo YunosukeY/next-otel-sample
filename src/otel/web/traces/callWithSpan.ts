@@ -1,5 +1,5 @@
 import { context, trace } from "@opentelemetry/api";
-import { webTracer } from "./getWebTracer";
+import { webTracer } from "./webTracer";
 
 export const callWithSpan = async <Output>(f: () => Promise<Output>) => {
   const span = webTracer.startSpan("callWithSpan");

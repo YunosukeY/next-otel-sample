@@ -1,6 +1,6 @@
 import Test from "@/client/Test";
 import { nodeLogger } from "@/otel/node/nodeLogger";
-import { observeMetrics } from "@/otel/node/osMetrics";
+import { observeOsMetrics } from "@/otel/node/metrics/osMetrics";
 import { action } from "@/server/action";
 
 const f = async () => {
@@ -18,7 +18,7 @@ const Home = async () => {
     action();
   }, 1000);
 
-  observeMetrics();
+  observeOsMetrics();
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

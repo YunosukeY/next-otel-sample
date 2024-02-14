@@ -8,7 +8,7 @@ import {
 } from "@opentelemetry/sdk-trace-web";
 import { W3CTraceContextPropagator } from "@opentelemetry/core";
 import { trace } from "@opentelemetry/api";
-import { webResource } from "../resources/webResource";
+import { webResource } from "../webResource";
 
 const provider = new WebTracerProvider({ resource: webResource });
 provider.addSpanProcessor(

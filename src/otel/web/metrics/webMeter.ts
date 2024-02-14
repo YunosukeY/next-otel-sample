@@ -6,7 +6,7 @@ import {
   MeterProvider,
   PeriodicExportingMetricReader,
 } from "@opentelemetry/sdk-metrics";
-import { webResource } from "../resources/webResource";
+import { webResource } from "../webResource";
 
 const meterProvider = new MeterProvider({
   resource: webResource,

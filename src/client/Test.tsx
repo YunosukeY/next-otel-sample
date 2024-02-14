@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import { action } from "../server/action";
-import { callWithSpan } from "@/otel/web/trace/callWithSpan";
+import { callWithSpan } from "@/otel/web/traces/callWithSpan";
 import { recordWebVitalMetrics } from "@/otel/web/metrics/webVitalMetrics";
 import { recordWindowMetrics } from "@/otel/web/metrics/windowMetrics";
-import { webLogger } from "@/otel/web/logs/webLogger";
+import { webLogger } from "@/otel/web/webLogger";
 
 const f = async () => {
   const res = await fetch("https://example.com/", {
