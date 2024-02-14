@@ -5,7 +5,7 @@ import {
   PeriodicExportingMetricReader,
 } from "@opentelemetry/sdk-metrics";
 
-// サーバー側でも動作する（urlを変える？）
+// for both web and node
 export const getMeterFor = (which: "web" | "node") => {
   const meterProvider = new MeterProvider({
     readers: [

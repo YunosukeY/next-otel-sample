@@ -2,7 +2,7 @@ import { NodeSDK } from "@opentelemetry/sdk-node";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { Resource } from "@opentelemetry/resources";
 import { SemanticResourceAttributes } from "@opentelemetry/semantic-conventions";
-import { SimpleSpanProcessor } from "@opentelemetry/sdk-trace-node";
+import { BatchSpanProcessor } from "@opentelemetry/sdk-trace-node";
 import { W3CTraceContextPropagator } from "@opentelemetry/core";
 
 export const nodeSdk = new NodeSDK({
@@ -10,5 +10,5 @@ export const nodeSdk = new NodeSDK({
     [SemanticResourceAttributes.SERVICE_NAME]: "server",
   }),
   textMapPropagator: new W3CTraceContextPropagator(),
-  spanProcessor: new SimpleSpanProcessor(new OTLPTraceExporter()),
+  spanProcessor: new BatchSpanProcessor(new OTLPTraceExporter()),
 });

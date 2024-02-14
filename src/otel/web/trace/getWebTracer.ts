@@ -4,7 +4,7 @@ import { registerInstrumentations } from "@opentelemetry/instrumentation";
 import { FetchInstrumentation } from "@opentelemetry/instrumentation-fetch";
 import { Resource, detectResourcesSync } from "@opentelemetry/resources";
 import {
-  SimpleSpanProcessor,
+  BatchSpanProcessor,
   WebTracerProvider,
 } from "@opentelemetry/sdk-trace-web";
 import { SemanticResourceAttributes } from "@opentelemetry/semantic-conventions";
@@ -20,11 +20,8 @@ const detectedResources = detectResourcesSync({
 resource = resource.merge(detectedResources);
 
 const provider = new WebTracerProvider({ resource });
-// Note: For production consider using the "BatchSpanProcessor" to reduce the number of requests
-// to your exporter. Using the SimpleSpanProcessor here as it sends the spans immediately to the
-// exporter without delay
 provider.addSpanProcessor(
-  new SimpleSpanProcessor(new OTLPTraceExporter({ url: "/api/trace" }))
+  new BatchSpanProcessor(new OTLPTraceExporter({ url: "/api/trace" }))
 );
 provider.register({
   contextManager: new ZoneContextManager(),
@@ -34,12 +31,6 @@ provider.register({
 registerInstrumentations({
   instrumentations: [
     new FetchInstrumentation({
-      ignoreUrls: [/localhost:8090\/sockjs-node/],
-      propagateTraceHeaderCorsUrls: [
-        "https://cors-test.appspot.com/test",
-        "https://httpbin.org/get",
-        "http://localhost:3000",
-      ],
       clearTimingResources: true,
     }),
   ],
