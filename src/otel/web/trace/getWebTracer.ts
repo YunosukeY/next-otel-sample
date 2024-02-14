@@ -4,7 +4,6 @@ import { registerInstrumentations } from "@opentelemetry/instrumentation";
 import { FetchInstrumentation } from "@opentelemetry/instrumentation-fetch";
 import { Resource, detectResourcesSync } from "@opentelemetry/resources";
 import {
-  ConsoleSpanExporter,
   SimpleSpanProcessor,
   WebTracerProvider,
 } from "@opentelemetry/sdk-trace-web";
@@ -24,7 +23,6 @@ const provider = new WebTracerProvider({ resource });
 // Note: For production consider using the "BatchSpanProcessor" to reduce the number of requests
 // to your exporter. Using the SimpleSpanProcessor here as it sends the spans immediately to the
 // exporter without delay
-provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
 provider.addSpanProcessor(
   new SimpleSpanProcessor(new OTLPTraceExporter({ url: "/api/trace" }))
 );

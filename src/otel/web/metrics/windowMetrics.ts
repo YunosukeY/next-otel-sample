@@ -2,7 +2,6 @@ import { Meter } from "@opentelemetry/api";
 
 const recordWidth = (webMeter: Meter) => {
   const widthHistogram = webMeter.createHistogram("width");
-  console.log("recordWidth");
   widthHistogram.record(innerWidth);
 };
 

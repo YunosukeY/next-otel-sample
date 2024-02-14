@@ -10,7 +10,6 @@ import { recordWindowMetrics } from "@/otel/web/metrics/windowMetrics";
 import { logger } from "@/otel/both/logs/logger";
 
 const f = async () => {
-  console.log("client fetch");
   const res = await fetch("https://example.com/", {
     method: "GET",
     mode: "no-cors",

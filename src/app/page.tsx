@@ -7,7 +7,6 @@ import Image from "next/image";
 import { shutdownMeterProvider } from "@/otel/both/metrics/shutdownMeterProvider";
 
 const f = async () => {
-  console.log("server fetch");
   const res = await fetch("https://example.com/", { cache: "no-cache" });
   const data = await res.text();
   return data;
