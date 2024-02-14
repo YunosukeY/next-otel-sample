@@ -4,6 +4,7 @@ import { logger } from "@/otel/both/logs/logger";
 import { recordOsMetrics } from "@/otel/node/osMetrics";
 import { action } from "@/server/action";
 import Image from "next/image";
+import { shutdownMeterProvider } from "@/otel/both/metrics/shutdownMeterProvider";
 
 const f = async () => {
   console.log("server fetch");

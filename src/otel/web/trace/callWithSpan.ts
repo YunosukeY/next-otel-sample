@@ -6,13 +6,8 @@ export const callWithSpan = async <Output>(f: () => Promise<Output>) => {
   const output = await context.with(
     trace.setSpan(context.active(), span),
     async () => {
-      const output = await f().then((output) => {
-        trace
-          .getSpan(context.active())
-          ?.addEvent("fetching-single-span-completed");
-        span.end();
-        return output;
-      });
+      const output = await f();
+      span.end();
       return output;
     }
   );

@@ -15,18 +15,20 @@ import {
 
 // サーバー側でも動作する（urlを変える？）
 export const getMeterFor = (which: "web" | "node") => {
-  const meterProvider = new MeterProvider();
-  metrics.setGlobalMeterProvider(meterProvider);
-
-  meterProvider.addMetricReader(
-    new PeriodicExportingMetricReader({
-      exporter: new OTLPMetricExporter({
-        url:
-          which === "web" ? "/api/metrics" : "http://localhost:4318/v1/metrics",
+  const meterProvider = new MeterProvider({
+    readers: [
+      new PeriodicExportingMetricReader({
+        exporter: new OTLPMetricExporter({
+          url:
+            which === "web"
+              ? "/api/metrics"
+              : "http://localhost:4318/v1/metrics",
+        }),
+        exportIntervalMillis: 1000,
       }),
-      exportIntervalMillis: 1000,
-    })
-  );
+    ],
+  });
+  metrics.setGlobalMeterProvider(meterProvider);
 
   return meterProvider.getMeter("example-exporter-collector");
 };
