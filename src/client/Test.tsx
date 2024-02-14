@@ -3,8 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { action } from "../server/action";
 import { callWithSpan } from "@/otel/web/trace/callWithSpan";
-import { shutdownMeterProvider } from "@/otel/both/metrics/shutdownMeterProvider";
-import { getMeterFor } from "@/otel/both/metrics/getMeterFor";
 import { recordWebVitalMetrics } from "@/otel/web/metrics/webVitalMetrics";
 import { recordWindowMetrics } from "@/otel/web/metrics/windowMetrics";
 import { webLogger } from "@/otel/web/webLogger";
@@ -27,12 +25,8 @@ const Test: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const webMeter = getMeterFor("web");
-    recordWebVitalMetrics(webMeter);
-    recordWindowMetrics(webMeter);
-    return () => {
-      shutdownMeterProvider();
-    };
+    recordWebVitalMetrics();
+    recordWindowMetrics();
   }, []);
 
   return (

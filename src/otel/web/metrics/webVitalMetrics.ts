@@ -1,41 +1,41 @@
-import { Meter } from "@opentelemetry/api";
 import { onCLS, onFCP, onFID, onINP, onLCP, onTTFB } from "web-vitals";
+import { webMeter } from "./webMeter";
 
-const recordCLS = (webMeter: Meter) => {
+const recordCLS = () => {
   const clsHistogram = webMeter.createHistogram("cls");
   onCLS((metric) => clsHistogram.record(metric.value));
 };
 
-const recordFCP = (webMeter: Meter) => {
+const recordFCP = () => {
   const fcpHistogram = webMeter.createHistogram("fcp");
   onFCP((metric) => fcpHistogram.record(metric.value));
 };
 
-const recordFID = (webMeter: Meter) => {
+const recordFID = () => {
   const fidHistogram = webMeter.createHistogram("fid");
   onFID((metric) => fidHistogram.record(metric.value));
 };
 
-const recordINP = (webMeter: Meter) => {
+const recordINP = () => {
   const inpHistogram = webMeter.createHistogram("inp");
   onINP((metric) => inpHistogram.record(metric.value));
 };
 
-const recordLCP = (webMeter: Meter) => {
+const recordLCP = () => {
   const lcpHistogram = webMeter.createHistogram("lcp");
   onLCP((metric) => lcpHistogram.record(metric.value));
 };
 
-const recordTTFB = (webMeter: Meter) => {
+const recordTTFB = () => {
   const ttfbHistogram = webMeter.createHistogram("ttfb");
   onTTFB((metric) => ttfbHistogram.record(metric.value));
 };
 
-export const recordWebVitalMetrics = (webMeter: Meter) => {
-  recordCLS(webMeter);
-  recordFCP(webMeter);
-  recordFID(webMeter);
-  recordINP(webMeter);
-  recordLCP(webMeter);
-  recordTTFB(webMeter);
+export const recordWebVitalMetrics = () => {
+  recordCLS();
+  recordFCP();
+  recordFID();
+  recordINP();
+  recordLCP();
+  recordTTFB();
 };

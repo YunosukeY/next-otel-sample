@@ -1,16 +1,16 @@
-import { Meter } from "@opentelemetry/api";
+import { webMeter } from "./webMeter";
 
-const recordWidth = (webMeter: Meter) => {
+const recordWidth = () => {
   const widthHistogram = webMeter.createHistogram("width");
   widthHistogram.record(innerWidth);
 };
 
-const recordHeight = (webMeter: Meter) => {
+const recordHeight = () => {
   const heightHistogram = webMeter.createHistogram("height");
   heightHistogram.record(innerHeight);
 };
 
-export const recordWindowMetrics = (webMeter: Meter) => {
-  recordWidth(webMeter);
-  recordHeight(webMeter);
+export const recordWindowMetrics = () => {
+  recordWidth();
+  recordHeight();
 };

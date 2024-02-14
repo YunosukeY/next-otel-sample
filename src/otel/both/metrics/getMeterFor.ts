@@ -5,8 +5,7 @@ import {
   PeriodicExportingMetricReader,
 } from "@opentelemetry/sdk-metrics";
 
-// for both web and node
-export const getMeterFor = (which: "web" | "node") => {
+export const configureMeterProvider = (which: "web" | "node") => {
   const meterProvider = new MeterProvider({
     readers: [
       new PeriodicExportingMetricReader({
@@ -21,6 +20,4 @@ export const getMeterFor = (which: "web" | "node") => {
     ],
   });
   metrics.setGlobalMeterProvider(meterProvider);
-
-  return meterProvider.getMeter("example-exporter-collector");
 };
