@@ -12,7 +12,11 @@ export const nodeSdk = new NodeSDK({
   serviceName: "server",
 
   // config for TraceProvider
-  spanProcessor: new BatchSpanProcessor(new OTLPTraceExporter()),
+  spanProcessor: new BatchSpanProcessor(
+    new OTLPTraceExporter({
+      url: "http://localhost:4318/v1/traces",
+    })
+  ),
 
   // config for MeterProvider
   metricReader: new PeriodicExportingMetricReader({
