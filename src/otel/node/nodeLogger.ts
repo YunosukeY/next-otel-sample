@@ -1,3 +1,3 @@
-import { Logger } from "../both/logs/Logger";
+import { Logger } from "../both/Logger";
 
 export const nodeLogger = new Logger();
