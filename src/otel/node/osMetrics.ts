@@ -1,5 +1,5 @@
-import { Meter } from "@opentelemetry/api";
 import os from "os";
+import { nodeMeter } from "./nodeMeter";
 
 const calcCpuUsage = (cpuInfo: os.CpuInfo[]) => {
   let total = 0;
@@ -17,21 +17,21 @@ const calcCpuUsage = (cpuInfo: os.CpuInfo[]) => {
   return (total - idle) / total;
 };
 
-const recordCpu = (meter: Meter) => {
-  const cpuUsageGauge = meter.createObservableGauge("cpu");
+const observeCpu = () => {
+  const cpuUsageGauge = nodeMeter.createObservableGauge("cpu");
   cpuUsageGauge.addCallback((observerResult) => {
     observerResult.observe(calcCpuUsage(os.cpus()));
   });
 };
 
-const recordMemory = (meter: Meter) => {
-  const memoryGauge = meter.createObservableGauge("memory");
+const observeMemory = () => {
+  const memoryGauge = nodeMeter.createObservableGauge("memory");
   memoryGauge.addCallback((observerResult) => {
     observerResult.observe((os.totalmem() - os.freemem()) / 1024 / 1024 / 1024);
   });
 };
 
-export const recordOsMetrics = (meter: Meter) => {
-  recordCpu(meter);
-  recordMemory(meter);
+export const observeMetrics = () => {
+  observeCpu();
+  observeMemory();
 };
