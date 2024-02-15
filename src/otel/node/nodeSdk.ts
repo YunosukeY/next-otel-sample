@@ -10,6 +10,7 @@ export const nodeSdk = new NodeSDK({
   serviceName: "server",
 
   // config for TraceProvider
+  // contextManager, propagatorはデフォルトで設定されている
   spanProcessor: new BatchSpanProcessor(
     new OTLPTraceExporter({
       url: "http://localhost:4318/v1/traces",
