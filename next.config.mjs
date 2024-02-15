@@ -13,6 +13,10 @@ const nextConfig = {
         source: "/api/metrics",
         destination: "http://localhost:4318/v1/metrics",
       },
+      {
+        source: "/api/logs",
+        destination: "http://localhost:4318/v1/logs",
+      },
     ];
   },
 };

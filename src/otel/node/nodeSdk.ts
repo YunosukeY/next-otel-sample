@@ -3,10 +3,8 @@ import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { BatchSpanProcessor } from "@opentelemetry/sdk-trace-node";
 import { PeriodicExportingMetricReader } from "@opentelemetry/sdk-metrics";
 import { OTLPMetricExporter } from "@opentelemetry/exporter-metrics-otlp-http";
-import {
-  BatchLogRecordProcessor,
-  ConsoleLogRecordExporter,
-} from "@opentelemetry/sdk-logs";
+import { BatchLogRecordProcessor } from "@opentelemetry/sdk-logs";
+import { OTLPLogExporter } from "@opentelemetry/exporter-logs-otlp-http";
 
 export const nodeSdk = new NodeSDK({
   serviceName: "server",
@@ -28,6 +26,8 @@ export const nodeSdk = new NodeSDK({
 
   // config for LoggerProvider
   logRecordProcessor: new BatchLogRecordProcessor(
-    new ConsoleLogRecordExporter()
+    new OTLPLogExporter({
+      url: "http://localhost:4318/v1/logs",
+    })
   ),
 });

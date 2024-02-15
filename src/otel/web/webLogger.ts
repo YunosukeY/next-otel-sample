@@ -2,14 +2,14 @@ import { logs } from "@opentelemetry/api-logs";
 import {
   LoggerProvider,
   SimpleLogRecordProcessor,
-  ConsoleLogRecordExporter,
 } from "@opentelemetry/sdk-logs";
 import { Logger } from "@/otel/both/Logger";
 import { webResource } from "./webResource";
+import { OTLPLogExporter } from "@opentelemetry/exporter-logs-otlp-http";
 
 const loggerProvider = new LoggerProvider({ resource: webResource });
 loggerProvider.addLogRecordProcessor(
-  new SimpleLogRecordProcessor(new ConsoleLogRecordExporter()) // まだInMemoryとConsoleLogしかない
+  new SimpleLogRecordProcessor(new OTLPLogExporter({ url: "/api/logs" }))
 );
 logs.setGlobalLoggerProvider(loggerProvider);
 
