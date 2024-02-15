@@ -2,11 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import { action } from "../server/action";
-import { callWithSpan } from "@/otel/web/traces/callWithSpan";
 import { recordWebVitalMetrics } from "@/otel/web/metrics/webVitalMetrics";
-import { recordWindowMetrics } from "@/otel/web/metrics/windowMetrics";
 import { webLogger } from "@/otel/web/webLogger";
 import { SeverityNumber } from "@opentelemetry/api-logs";
+import { webTracer } from "@/otel/web/traces/webTracer";
+import { context, trace } from "@opentelemetry/api";
 
 const f = async () => {
   const res = await fetch("https://example.com/", {
@@ -26,12 +26,18 @@ const Test: React.FC = () => {
 
   const [data, setData] = useState<string>();
   useEffect(() => {
-    callWithSpan(f).then((data) => setData(data));
+    const span = webTracer.startSpan("callWithSpan");
+    context
+      .with(trace.setSpan(context.active(), span), async () => {
+        const output = await f();
+        span.end();
+        return output;
+      })
+      .then((data) => setData(data));
   }, []);
 
   useEffect(() => {
     recordWebVitalMetrics();
-    recordWindowMetrics();
   }, []);
 
   return (
