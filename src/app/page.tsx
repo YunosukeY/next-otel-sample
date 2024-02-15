@@ -2,6 +2,7 @@ import Test from "@/client/Test";
 import { nodeLogger } from "@/otel/node/nodeLogger";
 import { observeOsMetrics } from "@/otel/node/metrics/osMetrics";
 import { action } from "@/server/action";
+import { SeverityNumber } from "@opentelemetry/api-logs";
 
 const f = async () => {
   const res = await fetch("https://example.com/", { cache: "no-cache" });
@@ -10,7 +11,11 @@ const f = async () => {
 };
 
 const Home = async () => {
-  nodeLogger.info("server component");
+  nodeLogger.emit({
+    severityNumber: SeverityNumber.INFO,
+    severityText: "INFO",
+    body: "server component",
+  });
 
   const data = await f();
 

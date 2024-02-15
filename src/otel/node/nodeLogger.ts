@@ -1,3 +1,3 @@
-import { Logger } from "../both/Logger";
+import { logs } from "@opentelemetry/api-logs";
 
-export const nodeLogger = new Logger();
+export const nodeLogger = logs.getLogger("app");

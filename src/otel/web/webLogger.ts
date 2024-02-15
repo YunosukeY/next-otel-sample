@@ -3,7 +3,6 @@ import {
   LoggerProvider,
   SimpleLogRecordProcessor,
 } from "@opentelemetry/sdk-logs";
-import { Logger } from "@/otel/both/Logger";
 import { webResource } from "./webResource";
 import { OTLPLogExporter } from "@opentelemetry/exporter-logs-otlp-http";
 
@@ -13,4 +12,4 @@ loggerProvider.addLogRecordProcessor(
 );
 logs.setGlobalLoggerProvider(loggerProvider);
 
-export const webLogger = new Logger();
+export const webLogger = logs.getLogger("app");

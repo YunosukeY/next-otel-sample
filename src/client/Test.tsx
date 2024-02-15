@@ -6,6 +6,7 @@ import { callWithSpan } from "@/otel/web/traces/callWithSpan";
 import { recordWebVitalMetrics } from "@/otel/web/metrics/webVitalMetrics";
 import { recordWindowMetrics } from "@/otel/web/metrics/windowMetrics";
 import { webLogger } from "@/otel/web/webLogger";
+import { SeverityNumber } from "@opentelemetry/api-logs";
 
 const f = async () => {
   const res = await fetch("https://example.com/", {
@@ -17,7 +18,11 @@ const f = async () => {
 };
 
 const Test: React.FC = () => {
-  webLogger.info("client component");
+  webLogger.emit({
+    severityNumber: SeverityNumber.INFO,
+    severityText: "INFO",
+    body: "client component",
+  });
 
   const [data, setData] = useState<string>();
   useEffect(() => {
