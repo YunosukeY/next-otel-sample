@@ -1,6 +1,6 @@
 import React from "react";
 import ServerLogExample from "./ServerLogExample";
-import ServerMetricsExample from "./ServerMetricsExample";
+import ServerMetricExample from "./ServerMetricExample";
 import ServerActionServerTraceExample from "./ServerActionServerTraceExample";
 import ServerFetchTraceExample from "./ServerFetchTraceExample";
 
@@ -9,7 +9,7 @@ const ServerOTelExamples: React.FC = () => {
     <>
       <ServerFetchTraceExample />
       <ServerActionServerTraceExample />
-      <ServerMetricsExample />
+      <ServerMetricExample />
       <ServerLogExample />
     </>
   );

@@ -1,4 +1,4 @@
-import { webTracer } from "@/otel/web/traces/webTracer";
+import { webTracer } from "@/otel/web/webTracer";
 import { context, trace } from "@opentelemetry/api";
 import React, { useEffect } from "react";
 
