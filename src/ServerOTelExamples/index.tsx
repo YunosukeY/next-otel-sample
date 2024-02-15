@@ -1,14 +1,14 @@
 import React from "react";
 import ServerLogExample from "./ServerLogExample";
 import ServerMetricExample from "./ServerMetricExample";
-import ServerActionServerTraceExample from "./ServerActionServerTraceExample";
+import ServerComponentServerActionTraceExample from "./ServerComponentServerActionTraceExample";
 import ServerFetchTraceExample from "./ServerFetchTraceExample";
 
 const ServerOTelExamples: React.FC = () => {
   return (
     <>
       <ServerFetchTraceExample />
-      <ServerActionServerTraceExample />
+      <ServerComponentServerActionTraceExample />
       <ServerMetricExample />
       <ServerLogExample />
     </>
