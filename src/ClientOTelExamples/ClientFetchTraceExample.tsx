@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 
 const ClientFetchTraceExample: React.FC = () => {
   useEffect(() => {
-    const span = webTracer.startSpan("callWithSpan");
+    const span = webTracer.startSpan("client manual Span");
     context.with(trace.setSpan(context.active(), span), async () => {
       await fetch("https://example.com/", {
         method: "GET",
